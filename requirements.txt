@@ -4,6 +4,4 @@ SpeechRecognition
 opencv-python
 regex
 pyttsx3
-threading
-webbrowser
 tf_keras
