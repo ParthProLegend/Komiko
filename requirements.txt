@@ -3,7 +3,6 @@ deepface
 SpeechRecognition
 opencv-python
 regex
-winsound
 pyttsx3
 threading
 webbrowser
