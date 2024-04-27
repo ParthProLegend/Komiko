@@ -1,0 +1,10 @@
+pyaudio
+deepface
+SpeechRecognition
+opencv-python
+regex
+winsound
+pyttsx3
+threading
+webbrowser
+tf_keras
