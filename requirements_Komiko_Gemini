@@ -1,0 +1,7 @@
+pyaudio
+deepface
+SpeechRecognition
+opencv-python
+pyttsx3
+tf_keras
+google-generativeai
