@@ -4,7 +4,7 @@ import webbrowser
 from threading import Thread
 import google.generativeai as genai
 
-api_key_file = open("Project\\bot_Sem5_data\\api_key_ParthProLegend", "r").read()
+api_key_file = open("{api_key_relative_location}", "r").read()
 genai.configure(api_key=f"{api_key_file}")
 model = genai.GenerativeModel("gemini-pro")
 
