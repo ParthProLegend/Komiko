@@ -42,12 +42,7 @@ def load_deepface_thread():
 def load_speech_recognition_thread():
     global r, mic, UnknownValueError, RequestError
     try:
-        from speech_recognition import (
-            Recognizer,
-            Microphone,
-            UnknownValueError,
-            RequestError,
-        )
+        from speech_recognition import ( Recognizer, Microphone, UnknownValueError, RequestError )
     except ImportError as e:
         print("Failed to import SpeechRecogniser:", e)
     r = Recognizer()
@@ -72,7 +67,6 @@ def wait():
 def do_other_things():
     global cam
     from cv2 import VideoCapture
-
     cam = VideoCapture(0)
 
 
@@ -97,7 +91,7 @@ def chatbot():
 
         try:
             text = r.recognize_google(audio)
-            # print(f"You said: {text}")
+            print(f"\n\nYou said: \t{text}")
         except UnknownValueError as e:
             Unknown_Value_Error = "Sorry, I did not understand what you said."
             print(Unknown_Value_Error, e)
@@ -119,7 +113,7 @@ def chatbot():
             print(f"Some Information about {query} is as follows:\n")
             reply = model.generate_content(f"Give Trusted Sourced Information within for this: {query} ")
             answer = reply.text
-            answer = (f"Some Information about {query} is as follows\n" + answer)
+            answer = f"Some Information about {query} is as follows\n" + answer
             answer = answer.replace("**", "").strip()
             answer = answer.replace("*", "").strip()
             print(f"\n {answer}")
@@ -129,7 +123,7 @@ def chatbot():
         if text.startswith("search"):
             query = text.replace("search", "", 1).strip()
             print(f"Opening {query} in a new tab.")
-            say_it_out({},f"Opening {query} in a new tab.")
+            say_it_out({}, f"Opening {query} in a new tab.")
             google(query)
             continue
 
@@ -141,7 +135,7 @@ def chatbot():
             print(f"{operations[1][f"{operation}"]} of, {query}")
             print(f"\n The {operations[0][f"{operation}"]} of {query} is: {answer}")
             say_it_out(operations[0][f"{operation}"], query)
-            say_it_out({},answer)
+            say_it_out({}, answer)
             continue
 
         if text.startswith("divide"):
@@ -151,12 +145,14 @@ def chatbot():
             print(f"Dividing: {query}")
             print(f"\n The Quotient of {query} is: {answer}")
             say_it_out("Quotient", query)
-            say_it_out({},answer)
+            say_it_out({}, answer)
             continue
 
         emotion_recognisation_thread.join()
-        reply = model.generate_content(f"While I am {dominant_emotion}, Give appropriate response to this: {text} ")
+        reply = model.generate_content(f"While I am {dominant_emotion}, Give an appropriate but brief response to this: {text} ")
         answer = reply.text
+        answer = answer.replace("**", "").strip()
+        answer = answer.replace("*", "").strip()
         print("\n[", dominant_emotion, "]", answer)
         say_it_out({}, answer)
 
